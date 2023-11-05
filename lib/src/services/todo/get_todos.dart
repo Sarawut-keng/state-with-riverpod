@@ -1,3 +1,4 @@
+
 import 'dart:developer';
 
 import 'package:flutter_state_management/src/models/model.dart';
@@ -12,8 +13,8 @@ class GetTodosService {
       final response = await client.get(
         Uri.parse('https://jsonplaceholder.typicode.com/todos'),
       );
-      log('Response status: ${response.statusCode}');
-      log('Response body: ${response.body}');
+      // log('Response status: ${response.statusCode}');
+      // log('Response body: ${response.body}');
       return todoFromJson(response.body);
     } catch (error) {
       log('Error while fetching todo: $error');

@@ -26,6 +26,7 @@ class MyApp extends StatelessWidget {
       ),
       routes: {
         '/todo-screen': (_) => const TodoScreen(),
+        '/post-screen': (_) => const PostScreen(),
       },
       home: const MyHomePage(),
     );
@@ -46,11 +47,25 @@ class MyHomePage extends StatelessWidget {
               Text(
                 'State Management with Riverpod',
               ),
-              ElevatedButton(
-                onPressed: () {
-                  Navigator.of(context).pushNamed('/todo-screen');
-                },
-                child: Text("Let's go"),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.of(context).pushNamed('/todo-screen');
+                    },
+                    child: Text("Todo"),
+                  ),
+                  SizedBox(
+                    width: 16.0,
+                  ),
+                  ElevatedButton(
+                    onPressed: () {
+                      Navigator.of(context).pushNamed('/post-screen');
+                    },
+                    child: Text("Post"),
+                  ),
+                ],
               ),
             ],
           ),

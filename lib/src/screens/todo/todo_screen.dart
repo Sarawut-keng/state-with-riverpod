@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:flutter_state_management/src/models/model.dart';
-import 'package:flutter_state_management/src/providers/todo_list_provider.dart';
-import 'package:flutter_state_management/src/widgets/async_widget_controller.dart';
+import 'package:flutter_state_management/src/providers/provider.dart';
+import 'package:flutter_state_management/src/widgets/widget.dart';
 
 class TodoScreen extends ConsumerWidget {
   const TodoScreen({Key? key}) : super(key: key);
