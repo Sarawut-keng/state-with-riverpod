@@ -43,6 +43,16 @@ class SaveNewPost extends _$SaveNewPost {
     );
   }
 
+  void setTitle(String? text) {
+    final newState = state.copyWith(title: text);
+    state = newState;
+  }
+
+  void setBody(String? body) {
+    final newState = state.copyWith(body: body);
+    state = newState;
+  }
+
   Future<bool> setSavePost() async {
     final client = http.Client();
     final savePostService = SavePostService(client);
@@ -50,6 +60,7 @@ class SaveNewPost extends _$SaveNewPost {
     if (response == null) {
       return false;
     }
+    ref.invalidate(postListProvider);
     return true;
   }
 }

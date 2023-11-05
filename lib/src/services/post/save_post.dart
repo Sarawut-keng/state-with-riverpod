@@ -9,15 +9,16 @@ class SavePostService {
 
   Future<SavePostResponse?> savePost(SavePost body) async {
     try {
+      log(savePostToJson(body));
       final response = await client.post(
         Uri.parse('https://jsonplaceholder.typicode.com/posts'),
         body: savePostToJson(body),
       );
-      // log('Response status: ${response.statusCode}');
-      // log('Response body: ${response.body}');
+      log('Response status: ${response.statusCode}');
+      log('Response body: ${response.body}');
       return savePostResponseFromJson(response.body);
     } catch (error) {
-      log('Error while fetching posts: $error');
+      log('Error while save post: $error');
       return null;
     }
   }

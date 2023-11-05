@@ -125,7 +125,7 @@ final postFilterIndexProvider =
 );
 
 typedef _$PostFilterIndex = AutoDisposeNotifier<int>;
-String _$saveNewPostHash() => r'd7f9f908d093cdb9db1b96415a05c6260c62f036';
+String _$saveNewPostHash() => r'3f0d726d518bf4d7d12105aa1ec26c3702ec5f62';
 
 /// See also [SaveNewPost].
 @ProviderFor(SaveNewPost)

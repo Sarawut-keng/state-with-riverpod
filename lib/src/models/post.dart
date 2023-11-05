@@ -52,6 +52,17 @@ class SavePost {
     required this.userId,
   });
 
+  SavePost copyWith({
+    String? title,
+    String? body,
+    int? userId,
+  }) =>
+      SavePost(
+        title: title ?? this.title,
+        body: body ?? this.body,
+        userId: userId ?? this.userId,
+      );
+
   factory SavePost.fromJson(Map<String, dynamic> json) => SavePost(
         title: json["title"],
         body: json["body"],
@@ -72,28 +83,23 @@ String savePostResponseToJson(SavePostResponse data) => json.encode(data.toJson(
 
 class SavePostResponse {
   int id;
-  String title;
-  String body;
-  int userId;
 
   SavePostResponse({
     required this.id,
-    required this.title,
-    required this.body,
-    required this.userId,
   });
+
+  SavePostResponse copyWith({
+    int? id,
+  }) =>
+      SavePostResponse(
+        id: id ?? this.id,
+      );
 
   factory SavePostResponse.fromJson(Map<String, dynamic> json) => SavePostResponse(
         id: json["id"],
-        title: json["title"],
-        body: json["body"],
-        userId: json["userId"],
       );
 
   Map<String, dynamic> toJson() => {
         "id": id,
-        "title": title,
-        "body": body,
-        "userId": userId,
       };
 }
