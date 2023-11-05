@@ -27,6 +27,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/todo-screen': (_) => const TodoScreen(),
         '/post-screen': (_) => const PostScreen(),
+        '/post-create-screen': (_) => const PostCreateScreen(),
       },
       home: const MyHomePage(),
     );
