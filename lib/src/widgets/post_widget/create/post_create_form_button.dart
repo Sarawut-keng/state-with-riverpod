@@ -13,23 +13,15 @@ class PostCreateFormButton extends ConsumerWidget {
       child: Padding(
         padding: const EdgeInsets.all(16.0),
         child: InkWell(
-          onTap: () {
+          onTap: () async {
             if (form.title.isNotEmpty && form.body.isNotEmpty) {
-              showDialog(
-                context: context,
-                barrierDismissible: false,
-                builder: (context) => Dialog(
-                  elevation: 0,
-                  backgroundColor: Colors.transparent,
-                  child: Center(
-                    child: CircularProgressIndicator(),
-                  ),
-                ),
-              );
-              ref.read(saveNewPostProvider.notifier).setSavePost();
-              Navigator.of(context).pop();
-              Navigator.of(context).popUntil((route) {
-                return route.settings.name == '/post-screen';
+              ref.read(postOverlayProvider.notifier).toggle();
+              ref.read(saveNewPostProvider.notifier).setSavePost().then((value) {
+                if (value) {
+                  Navigator.of(context).popUntil((route) {
+                    return route.settings.name == '/post-screen';
+                  });
+                }
               });
             }
           },

@@ -125,7 +125,22 @@ final postFilterIndexProvider =
 );
 
 typedef _$PostFilterIndex = AutoDisposeNotifier<int>;
-String _$saveNewPostHash() => r'3f0d726d518bf4d7d12105aa1ec26c3702ec5f62';
+String _$postOverlayHash() => r'e7e30953f63c3b9d31a780c54fec7ec73c7b4281';
+
+/// See also [PostOverlay].
+@ProviderFor(PostOverlay)
+final postOverlayProvider =
+    AutoDisposeNotifierProvider<PostOverlay, bool>.internal(
+  PostOverlay.new,
+  name: r'postOverlayProvider',
+  debugGetCreateSourceHash:
+      const bool.fromEnvironment('dart.vm.product') ? null : _$postOverlayHash,
+  dependencies: null,
+  allTransitiveDependencies: null,
+);
+
+typedef _$PostOverlay = AutoDisposeNotifier<bool>;
+String _$saveNewPostHash() => r'61bff0cdfa2bf6ea12cd18dae6c5c93ce903c5f3';
 
 /// See also [SaveNewPost].
 @ProviderFor(SaveNewPost)

@@ -33,6 +33,18 @@ Future<List<Post>> postList(PostListRef ref, int filterIndex) async {
 }
 
 @riverpod
+class PostOverlay extends _$PostOverlay {
+  @override
+  bool build() {
+    return false;
+  }
+
+  void toggle() {
+    state = !state;
+  }
+}
+
+@riverpod
 class SaveNewPost extends _$SaveNewPost {
   @override
   SavePost build() {
@@ -60,6 +72,7 @@ class SaveNewPost extends _$SaveNewPost {
     if (response == null) {
       return false;
     }
+    ref.read(postOverlayProvider.notifier).toggle();
     ref.invalidate(postListProvider);
     return true;
   }
