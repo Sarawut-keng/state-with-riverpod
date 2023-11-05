@@ -35,7 +35,35 @@ class PostScreen extends ConsumerWidget {
                   vertical: 4.0,
                 ),
                 padding: const EdgeInsets.all(16.0),
-                child: Text(postList.value![index].title),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(12.0),
+                  border: Border.all(
+                    color: Colors.black54,
+                    width: 1.0,
+                  ),
+                ),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      postList.value![index].title,
+                      style: TextStyle(
+                        fontSize: Theme.of(context).textTheme.titleMedium?.fontSize,
+                        fontWeight: FontWeight.w700,
+                      ),
+                    ),
+                    Divider(
+                      height: 8,
+                    ),
+                    Text(
+                      postList.value![index].body,
+                      style: TextStyle(
+                        fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize,
+                        fontWeight: FontWeight.w400,
+                      ),
+                    ),
+                  ],
+                ),
               );
             },
           ),
