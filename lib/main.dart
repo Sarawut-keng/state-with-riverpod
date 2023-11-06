@@ -41,26 +41,67 @@ class MyHomePage extends StatelessWidget {
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: <Widget>[
-              Text(
-                'State Management with Riverpod',
+              RichText(
+                textAlign: TextAlign.center,
+                text: TextSpan(
+                  text: 'State management with ',
+                  style: TextStyle(
+                    fontSize: Theme.of(context).textTheme.headlineMedium?.fontSize,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.black,
+                  ),
+                  children: <TextSpan>[
+                    TextSpan(
+                      text: 'Riverpod',
+                      style: TextStyle(
+                        color: Colors.purple.shade400,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              SizedBox(
+                height: 24,
               ),
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.black,
+                      foregroundColor: Colors.white,
+                      elevation: 0,
+                      shape: StadiumBorder(),
+                    ),
                     onPressed: () {
                       Navigator.of(context).pushNamed('/todo-screen');
                     },
-                    child: Text("Todo"),
+                    child: Container(
+                      margin: EdgeInsets.symmetric(
+                        horizontal: 16.0,
+                      ),
+                      child: Text("Todo"),
+                    ),
                   ),
                   SizedBox(
                     width: 16.0,
                   ),
                   ElevatedButton(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: Colors.purple.shade400,
+                      foregroundColor: Colors.white,
+                      elevation: 0,
+                      shape: StadiumBorder(),
+                    ),
                     onPressed: () {
                       Navigator.of(context).pushNamed('/post-screen');
                     },
-                    child: Text("Post"),
+                    child: Container(
+                      margin: EdgeInsets.symmetric(
+                        horizontal: 16.0,
+                      ),
+                      child: Text("Feeds"),
+                    ),
                   ),
                 ],
               ),

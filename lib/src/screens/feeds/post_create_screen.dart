@@ -13,6 +13,7 @@ class PostCreateScreen extends ConsumerWidget {
       child: Scaffold(
         appBar: AppBar(
           title: Text('New post'),
+          elevation: 0,
         ),
         body: SafeArea(
           child: Container(

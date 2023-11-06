@@ -16,6 +16,8 @@ class CommentScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Comments'),
+        backgroundColor: Colors.purple.shade400,
+        elevation: 0,
       ),
       body: Column(
         children: <Widget>[

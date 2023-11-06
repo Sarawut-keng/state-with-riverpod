@@ -13,6 +13,9 @@ class TodoScreen extends ConsumerWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Todo Screen'),
+        backgroundColor: Colors.black,
+        foregroundColor: Colors.white,
+        elevation: 0,
       ),
       body: AsyncWidgetController(
         asyncValue: todoList,

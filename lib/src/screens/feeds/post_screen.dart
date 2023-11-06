@@ -9,7 +9,9 @@ class PostScreen extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Post Screen'),
+        title: Text('Your Feeds'),
+        backgroundColor: Colors.purple.shade400,
+        elevation: 0,
       ),
       body: Column(
         children: <Widget>[

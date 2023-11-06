@@ -18,6 +18,21 @@ class PostCreateFormButton extends ConsumerWidget {
               ref.read(postOverlayProvider.notifier).toggle();
               ref.read(saveNewPostProvider.notifier).setSavePost().then((value) {
                 if (value) {
+                  ScaffoldMessenger.of(context).showSnackBar(
+                    SnackBar(
+                      showCloseIcon: true,
+                      content: Row(
+                        mainAxisAlignment: MainAxisAlignment.start,
+                        children: const [
+                          Icon(
+                            Icons.check_circle_outline_rounded,
+                            color: Colors.white,
+                          ),
+                          Text('Post Created'),
+                        ],
+                      ),
+                    ),
+                  );
                   Navigator.of(context).popUntil((route) {
                     return route.settings.name == '/post-screen';
                   });

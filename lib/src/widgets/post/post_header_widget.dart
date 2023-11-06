@@ -21,6 +21,9 @@ class PostHeaderWidget extends StatelessWidget {
             ),
           ),
           ElevatedButton(
+            style: ElevatedButton.styleFrom(
+              elevation: 0,
+            ),
             onPressed: () {
               Navigator.of(context).pushNamed('/post-create-screen');
             },
