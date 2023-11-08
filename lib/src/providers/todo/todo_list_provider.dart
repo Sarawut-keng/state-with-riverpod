@@ -6,14 +6,11 @@ import 'package:http/http.dart' as http;
 part 'todo_list_provider.g.dart';
 
 @riverpod
-class TodoList extends _$TodoList {
-  @override
-  FutureOr<List<Todo>> build() async {
-    final client = http.Client();
-    final getTodosService = GetTodosService(client);
+FutureOr<List<Todo>> todoList(TodoListRef ref) async {
+  final client = http.Client();
+  final getTodosService = GetTodosService(client);
 
-    final response = await getTodosService.getTodos();
+  final response = await getTodosService.getTodos();
 
-    return response;
-  }
+  return response;
 }
