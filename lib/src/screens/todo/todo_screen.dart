@@ -18,19 +18,19 @@ class TodoScreen extends ConsumerWidget {
         elevation: 0,
       ),
       body: AsyncWidgetController(
-        asyncValue: todoList,
+        asyncValue: [todoList],
         onLoading: () => Center(
           child: CircularProgressIndicator(),
         ),
         onError: (error) => Center(
           child: Text(error),
         ),
-        onComplete: (List<Todo> value) => SingleChildScrollView(
+        onComplete: () => SingleChildScrollView(
           physics: AlwaysScrollableScrollPhysics(),
           child: ListView.builder(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
-            itemCount: value.length,
+            itemCount: todoList.value!.length,
             itemBuilder: (context, index) {
               return Container(
                 margin: const EdgeInsets.symmetric(
@@ -38,7 +38,7 @@ class TodoScreen extends ConsumerWidget {
                   vertical: 4.0,
                 ),
                 padding: const EdgeInsets.all(16.0),
-                child: Text(value[index].title),
+                child: Text(todoList.value![index].title),
               );
             },
           ),

@@ -12,7 +12,7 @@ class CommentListWidget extends ConsumerWidget {
   Widget build(BuildContext context, WidgetRef ref) {
     final AsyncValue<List<Comment>> commentList = ref.watch(commentListProvider(post.id));
     return AsyncWidgetController(
-      asyncValue: commentList,
+      asyncValue: [commentList],
       onLoading: () {
         return Center(
           child: CircularProgressIndicator(),
@@ -23,14 +23,14 @@ class CommentListWidget extends ConsumerWidget {
           child: Text(error),
         );
       },
-      onComplete: (List<Comment> value) {
+      onComplete: () {
         return Expanded(
           child: SingleChildScrollView(
             physics: AlwaysScrollableScrollPhysics(),
             child: ListView.builder(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
-              itemCount: value.length,
+              itemCount: commentList.value!.length,
               itemBuilder: (context, index) {
                 return Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -66,7 +66,7 @@ class CommentListWidget extends ConsumerWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: <Widget>[
                             Text(
-                              value[index].email,
+                              commentList.value![index].email,
                               style: TextStyle(
                                 fontSize: Theme.of(context).textTheme.titleSmall?.fontSize,
                                 fontWeight: FontWeight.w700,
@@ -74,7 +74,7 @@ class CommentListWidget extends ConsumerWidget {
                               ),
                             ),
                             Text(
-                              value[index].body,
+                              commentList.value![index].body,
                               style: TextStyle(
                                 fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize,
                                 fontWeight: FontWeight.normal,

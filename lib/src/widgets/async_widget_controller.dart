@@ -5,10 +5,10 @@ typedef WidgetCallback = Widget Function();
 typedef WidgetCallbackWithValue<T> = Widget Function(T value);
 
 class AsyncWidgetController<T> extends StatelessWidget {
-  final AsyncValue<T> asyncValue;
+  final List<AsyncValue<T>> asyncValue;
   final WidgetCallback onLoading;
   final WidgetCallbackWithValue<String> onError;
-  final WidgetCallbackWithValue<T> onComplete;
+  final WidgetCallback onComplete;
 
   const AsyncWidgetController({
     super.key,
@@ -20,11 +20,11 @@ class AsyncWidgetController<T> extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    if (asyncValue.isLoading) {
+    if (asyncValue.any((a) => a.isLoading)) {
       return onLoading();
-    } else if (asyncValue.hasError) {
-      return onError(asyncValue.error.toString());
+    } else if (asyncValue.any((a) => a.hasError)) {
+      return onError(asyncValue.firstWhere((a) => a.hasError).error.toString());
     }
-    return onComplete(asyncValue.value as T);
+    return onComplete();
   }
 }

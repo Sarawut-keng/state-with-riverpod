@@ -16,28 +16,28 @@ class PostListCardWidget extends ConsumerWidget {
     final AsyncValue<List<Post>> postList = ref.watch(postListProvider(postFilterIndex));
     final AsyncValue<List<User>> userList = ref.watch(userListProvider);
     return AsyncWidgetController(
-      asyncValue: postList,
+      asyncValue: [postList, userList],
       onLoading: () => Center(
         child: CircularProgressIndicator(),
       ),
       onError: (error) => Center(
         child: Text(error),
       ),
-      onComplete: (List<Post> value) => Expanded(
+      onComplete: () => Expanded(
         child: SingleChildScrollView(
           physics: AlwaysScrollableScrollPhysics(),
           child: ListView.builder(
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
-            itemCount: value.length,
+            itemCount: postList.value!.length,
             itemBuilder: (context, index) {
-              final user = userList.value?.firstWhere((e) => e.id == value[index].userId);
+              final user = userList.value?.firstWhere((e) => e.id == postList.value![index].userId);
               return GestureDetector(
                 onTap: () {
                   Navigator.of(context).pushNamed(
                     '/comment-screen',
                     arguments: CommentScreenArguments(
-                      post: value[index],
+                      post: postList.value![index],
                       user: user as User,
                     ),
                   );
@@ -59,7 +59,7 @@ class PostListCardWidget extends ConsumerWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        value[index].title,
+                        postList.value![index].title,
                         style: TextStyle(
                           fontSize: Theme.of(context).textTheme.titleMedium?.fontSize,
                           fontWeight: FontWeight.w700,
@@ -69,7 +69,7 @@ class PostListCardWidget extends ConsumerWidget {
                         height: 8,
                       ),
                       Text(
-                        value[index].body,
+                        postList.value![index].body,
                         style: TextStyle(
                           fontSize: Theme.of(context).textTheme.bodyMedium?.fontSize,
                           fontWeight: FontWeight.w400,
